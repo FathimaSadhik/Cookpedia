@@ -1,0 +1,205 @@
+<div class="container-fluid">
+    <div class="row">
+        <div style="min-height: 100vh;width: fit-content;"
+            class="col-lg-2 bg-success text-light d-flex flex-column p-3 shadow">
+            <!-- sidebaar -->
+            <h5 class="mb-5 text-warning border rounded p-4">
+                <i class="fa-solid fa-graduation-cap"></i> CookPedia Admin
+            </h5>
+            <a routerLink="/admin" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-chart-simple"></i> DashBoard</a>
+            <a routerLink="/admin/all-recipe" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-bowl-food"></i> Recipes</a>
+            <a routerLink="/admin/all-users" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-users"></i> Users</a>
+            <a routerLink="/admin/all-download" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-download"></i> Downloads</a>
+            <a routerLink="/admin/all-request" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-message"></i> Requests</a>
+
+        </div>
+        <div class="col">
+            @if (id){
+                <h1 class="text-center">update Recipe Details</h1>
+            }@else {
+                <h1 class="text-center">Add Recipe Details</h1>
+
+            }
+            <div class="container my-5 border text-center rounded p-5 shadow w-75">
+               @if(recipeDetails.image){
+                <img width="100px" [src]="recipeDetails.image" alt="no image">
+               }
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <div class="mb-2">
+                            <input [(ngModel)]="recipeDetails.name" placeholder="Recipe Name" type="text" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <input [(ngModel)]="recipeDetails.prepTimeMinutes" placeholder="Recipe Preparation time " type="text" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="cuisine">Choose Recipe Cuisine</label>
+                            <select [(ngModel)]="recipeDetails.cuisine" name="cuisine" id="cuisine" class="form-control">
+                                <option disabled selected hidden>Choose Cuisine Type</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Asian">Asian</option>
+                                <option value="American">American</option>
+                                <option value="Mexican">Mexican</option>
+                                <option value="Pakistani">Pakistani</option>
+                                <option value="Japanese">Japanese</option>
+                                <option value="Thai">Thai</option>
+                                <option value="Indian">Indian</option>
+                                <option value="Turkish">Turkish</option>
+                                <option value="Smoothie">Smoothie</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <input [(ngModel)]="recipeDetails.image" placeholder="Recipe Image URL" type="text" class="form-control">
+
+                        </div>
+                        <div class="mb-2">
+                            <div class="d-flex align-items-center mb-2">
+                                <textarea #ingredientInput placeholder="Recipe Ingredients" class="form-control"></textarea>
+                                <button (click)="addIngredients(ingredientInput.value)" class="btn btn-primary ms-2">+</button>
+                
+                            </div>
+                            @if(ingridients.length>0){
+                                @for (item of ingridients; track $index) {
+                                    <div class="d-flex align-items-center mb-2">
+                                        <input [value]="item" type="text" placeholder="ingredients" class="form-control">
+                                        <button (click)="removeIngredients(item)" class="btn  ms-2">
+                                           <i class="fa-solid fa-trash text-danger"></i>
+                                       </button>                
+                                           </div>
+
+                                }
+                            }
+
+
+                           
+                        </div>
+                    </div>
+                    <div class="col-6">
+
+                        <div class="mb-2">
+                            <input [(ngModel)]="recipeDetails.cookTimeMinutes" placeholder="Recipe Cooking Time in Minutes" type="text" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <input [(ngModel)]="recipeDetails.servings" placeholder="Recipe Servings (ex:4)" type="text" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="cuisine">Choose Mode of Cooking</label>
+                            <select [(ngModel)]="recipeDetails.difficulty" name="cuisine" id="cuisine" class="form-control">
+                                <option disabled selected hidden>Choose Mode of Cooking</option>
+                                <option value="Italian">Easy</option>
+                                <option value="Asian">Medium</option>
+                                <option value="American">Hard</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <input [(ngModel)]="recipeDetails.caloriesPerServing" placeholder="Recipe Calorie Per Servings (ex:350)" type="text" class="form-control">
+    
+                        </div>
+                        <div class="mb-2">
+                            <div class="d-flex align-items-center mb-2">
+                                <textarea #instructionInput placeholder="Recipe Cooking Instructions" class="form-control"></textarea>
+                                <button (click)="addInstructions(instructionInput.value)" class="btn btn-primary ms-2">+</button>
+                
+                            </div>
+                            @if (instructions.length>0){
+                                @for (item of instructions; track $index) {
+                                    <div class="d-flex align-items-center mb-2">
+                                        <input [value]="item" type="text" placeholder="Instructions" class="form-control">
+                                               <button (click)="removeInstruction(item)" class="btn  ms-2">
+                                                   <i class="fa-solid fa-trash text-danger"></i>
+                                               </button>
+                               
+                                           </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="mb-2">
+                    <div class="border rounded p-2">
+                        <span class="mb-2"> Choose Meal type of The Recipe:
+                            @if(id){
+                                @for (item of mealType; track $index) {
+                                    <span class="me-2 border rounded p-1">{{item}}<button (click)="removeMealType(item)" class="btn"><i class="fa-solid fa-close"></i></button></span>
+                                }
+                            }@else {
+                                @for (item of mealType; track $index) {
+                                    <span class="me-2 border rounded p-1">{{item}}</span>
+                                }
+                            }
+                            
+
+                        </span>
+                        <div class="d-flex flex-wrap my-3"> 
+                            <div class="border rounded p-1 me-2">
+                                <label for="Dinner">
+                                  <input (change)="mealTypeSelect($event)" type="checkbox" name="Dinner" id="Dinner">
+                                    Dinner
+                                </label>
+                                 </div>
+                                 <div class="border rounded p-1 me-2">
+                                    <label for="Lunch ">
+                                      <input (change)="mealTypeSelect($event)" type="checkbox" name="Lunch" id="Lunch">
+                                      Lunch 
+                                    </label>
+                                </div>
+                                <div class="border rounded p-1 me-2">
+                                    <label for="Snack">
+                                      <input (change)="mealTypeSelect($event)" type="checkbox" name="Snack" id="Snack">
+                                      Snack
+                                    </label>
+                                    
+                                </div>
+                                <div class="border rounded p-1 me-2">
+                                    <label for="Dessert">
+                                      <input (change)="mealTypeSelect($event)" type="checkbox" name="Dessert" id="Dessert">
+                                        Dessert
+                                    </label>
+                                    
+                                </div>
+                                <div class="border rounded p-1 me-2">
+                                    <label for="Appetizer">
+                                      <input (change)="mealTypeSelect($event)" type="checkbox" name="Appetizer" id="Appetizer">
+                                      Appetizer
+                                    </label>
+                                    
+                                </div>
+                                <div class="border rounded p-1 me-2">
+                                    <label for="Breakfast">
+                                      <input (change)="mealTypeSelect($event)" type="checkbox" name="Breakfast" id="Breakfast">
+                                      Breakfast
+                                    </label>
+                                 </div>   
+                                 <div class="border rounded p-1 me-2">
+                                    <label for="Beverage">
+                                      <input (change)="mealTypeSelect($event)" type="checkbox" name="Beverage" id="Beverage">
+                                     Beverage
+                                    </label>
+                                 </div> 
+                                 <div class="border rounded p-1 me-2">
+                                    <label for="Salad">
+                                      <input (change)="mealTypeSelect($event)" type="checkbox" name="Salad" id="Salad">
+                                      Salad
+                                    </label>
+                                 </div> 
+                        </div>
+                    </div>
+                    
+                </div>
+                @if(id){
+                    <button (click)="editRecipe()"   class="btn btn-primary">Update Recipe</button>
+
+                }@else {
+                    <button (click)="addRecipe()"  class="btn btn-primary">Add Recipe</button>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

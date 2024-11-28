@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="row">
+        <div style="min-height: 100vh;width: fit-content;"
+            class="col-lg-2 bg-success text-light d-flex flex-column p-3 shadow">
+            <!-- sidebaar -->
+            <h5 class="mb-5 text-warning border rounded p-4">
+                <i class="fa-solid fa-graduation-cap"></i> CookPedia Admin
+            </h5>
+            <a routerLink="/admin" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-chart-simple"></i> DashBoard</a>
+            <a routerLink="/admin/all-recipe" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-bowl-food"></i> Recipes</a>
+            <a routerLink="/admin/all-users" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-users"></i> Users</a>
+            <a routerLink="/admin/all-download" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-download"></i> Downloads</a>
+            <a routerLink="/admin/all-request" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-message"></i> Requests</a>
+           
+        </div>
+        <div class="col">
+            <h1>All Users List</h1>
+            <table class="table shadow my-5">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>E Mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (user of allUsers; track $index; let i=$index;) {
+                        <tr>
+                            <td>{{i}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

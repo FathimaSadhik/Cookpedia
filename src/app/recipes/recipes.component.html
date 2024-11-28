@@ -1,0 +1,93 @@
+<!-- header -->
+ <app-header></app-header>
+ <!-- main container -->
+<div class="container my-5">
+<div class="row">
+    <div class="col-lg-4">
+<div class="container">
+<h4>Filter</h4>
+<button (click)="getAllRecipes()" class="btn mt-5">All</button> <br>
+<!-- bootstrap cuisin collapse -->
+<button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Cuisine Type
+  </button> <br>
+  <div class="collapse" id="collapseExample">
+<button (click)="filterRecipes('cuisine','Italian')" class="btn">Italian</button>
+<button (click)="filterRecipes('cuisine','Asian')"  class="btn">Asian</button>
+<button (click)="filterRecipes('cuisine','American')" class="btn">American</button>
+<button (click)="filterRecipes('cuisine','Mexican')" class="btn">Mexican</button>
+<button (click)="filterRecipes('cuisine','Pakistani')" class="btn">Pakistani</button>
+<button (click)="filterRecipes('cuisine','Japanese')" class="btn">Japanese</button>
+<button (click)="filterRecipes('cuisine','Thai')" class="btn">Thai</button>
+<button (click)="filterRecipes('cuisine','Indian')" class="btn">Indian</button>
+<button (click)="filterRecipes('cuisine','Turkish')" class="btn">Turkish</button>
+<button (click)="filterRecipes('cuisine','Smoothie')" class="btn">Smoothie</button>
+    <!-- bootsrap div close -->
+  </div>
+  <!-- mealtype -->
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampleMeal" aria-expanded="false" aria-controls="collapseExample">
+    Meal Type
+  </button>
+  <div class="collapse" id="collapseExampleMeal">
+<button (click)="filterRecipes('mealType','Dinner')" class="btn">Dinner</button>
+<button (click)="filterRecipes('mealType','Lunch')" class="btn">Lunch</button>
+<button (click)="filterRecipes('mealType','Snack')" class="btn">Snack</button>
+<button (click)="filterRecipes('mealType','Dessert')" class="btn">Dessert</button>
+<button (click)="filterRecipes('mealType','Appetizer')" class="btn">Appetizer</button>
+<button (click)="filterRecipes('mealType','Breakfast')" class="btn">Breakfast</button>
+<button (click)="filterRecipes('mealType','Beverage')" class="btn">Beverage</button>
+<button (click)="filterRecipes('mealType','Salad')" class="btn">Salad</button>
+
+    <!-- bootsrap meal div close -->
+  </div>
+<!-- container close -->
+</div>
+
+<!-- div 4 clse -->
+    </div>
+    <div class="col-lg-8">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1>All Recipes</h1>
+          <input [(ngModel)]="searchKey" type="text" class="form-control w-50" placeholder="Search Your Recipe here!!!">
+  <!-- div all recipr close -->
+        </div>
+        <!-- div row copy -->
+        <div class="row my-3">
+          @if(allRecipes.length>0){
+            @for (recipe of allRecipes | search :searchKey | paginate: { itemsPerPage: 9, currentPage: p }; track $index) {
+              <div class="col-lg-4">
+                <!-- card open -->
+                <div class="p-3">
+                    <img (click)="viewRecipe(recipe._id)" [src]="recipe.image" class="card-img-top rounded" alt="...">
+                    <div class="card-body mt-2">
+                      <h5 class="card-title">{{recipe.name}}</h5>
+                      <p>Cuisine :{{recipe.cuisine}}</p>
+                    </div>
+                    <!-- card close -->
+                  </div>
+                  <!-- col close -->
+                   </div>
+            }
+            @if((allRecipes | search : searchKey).length==0){
+              <div class="fw-bolder text-center text-danger">Product Not Found!!!</div>  
+            }
+          }@else {
+            <div class="fw-bolder text-center text-danger">Product Not Found!!!</div>
+          }
+            
+            <!-- row close -->
+         </div>
+         <div class="text-center my-5">
+          <pagination-controls (pageChange)="p =$event"></pagination-controls>
+         </div>
+        <!-- div cls 8 -->
+    </div>
+<!-- rwo close -->
+</div>
+
+
+
+    <!-- main container close -->
+</div>
+<!-- footer component -->
+<app-footer></app-footer>

@@ -1,0 +1,80 @@
+<app-header>
+</app-header>
+<div class="container">
+<div style="height: 350px;" class="bg-success row align-items-center">
+<div class="col-lg-2"></div>
+    <div class="col-lg-8 text-center text-light">
+        <h1>Contact Us</h1>
+        <p class="mt-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error tenetur odio dolor veniam illo eos accusantium autem maiores voluptatum cum sequi blanditiis vero architecto natus, saepe consequatur unde, nemo delectus.</p>
+    </div>
+    <div class="col-lg"></div>
+</div>
+<!-- second div -->
+ <div style="height: 650px;" class="row align-items-center my-5">
+<div class="col-lg-2"></div>
+<div class="col-lg-4">
+    <h3>Get In Touch</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas porro ipsum beatae alias est. Dolor cum suscipit quidem ut odit necessitatibus eos, numquam molestias exercitationem ratione vitae asperiores esse laudantium.</p>
+    <div class="d-flex">
+        <div style="height: 40px; width: 40px;" class="rounded-circle bg-success d-flex justify-content-center align-items-center text-light me-3"><i class="fa-solid fa-location"></i></div>
+    
+    <div>
+        <h5>Address</h5>
+    <p>NYC 4567,PO Berin.</p>
+    </div>
+</div>
+<!-- phone number -->
+<div class="d-flex">
+    <div style="height: 40px; width: 40px;" class="rounded-circle bg-success d-flex justify-content-center align-items-center text-light me-3"><i class="fa-solid fa-phone"></i></div>
+
+<div>
+    <h5>Phone Number</h5>
+<p>9947106435</p>
+</div>
+</div>
+<!-- email -->
+<div class="d-flex">
+    <div style="height: 40px; width: 40px;" class="rounded-circle bg-success d-flex justify-content-center align-items-center text-light me-3"><i class="fa-solid fa-envelope"></i></div>
+
+<div>
+    <h5>E Mail</h5>
+<p>{{demoMail}}</p>
+</div>
+</div>
+<hr>
+<h5>Follow Us</h5>
+<div class="d-flex mt-4">
+    <div style="height: 40px; width: 40px;" class="rounded-circle bg-success d-flex justify-content-center align-items-center text-light me-3"><i class="fa-brands fa-facebook"></i></div>
+    <div style="height: 40px; width: 40px;" class="rounded-circle bg-success d-flex justify-content-center align-items-center text-light me-3"><i class="fa-brands fa-instagram"></i></div>
+    <div style="height: 40px; width: 40px;" class="rounded-circle bg-success d-flex justify-content-center align-items-center text-light me-3"><i class="fa-brands fa-twitter"></i></div>
+    <div style="height: 40px; width: 40px;" class="rounded-circle bg-success d-flex justify-content-center align-items-center text-light me-3"><i class="fa-brands fa-youtube"></i></div>
+</div>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-lg-4">
+    <form (ngSubmit)="submitTestimony()" [formGroup]="testimonyForm" class="border rounded shadow p-5">
+<h1>Client Testimony</h1>
+<div class="mb-3 mt-5">
+<input name="name" formControlName="name" type="text" class="form-control" placeholder="Name">
+</div>
+<div class="mb-3">
+    <input name="email" formControlName="email" type="email" class="form-control" placeholder="Email">
+    </div>
+    <div class="mb-3">
+        <textarea  name="message" formControlName="message" type="text" class="form-control" placeholder="Message"></textarea>
+        </div>
+        <p class="my-4 text-secondary">
+            By Submitting, your agreeing the terms and condition of our website. We may use your details in our site.
+        </p>
+        <div class="float-end">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
+<div class="col-lg-1"></div>
+ </div>
+ <iframe class="my-5" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d115412.52140740241!2d55.52961116039781!3d25.31625311138521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sae!4v1731405815935!5m2!1sen!2sae" width="1300" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!-- main div close -->
+</div>
+<!-- footer component -->
+<app-footer></app-footer>

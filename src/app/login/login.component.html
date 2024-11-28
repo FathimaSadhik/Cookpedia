@@ -1,0 +1,29 @@
+<div style="height: 100vh;" class="container d-flex flex-column justify-content-center align-items-center">
+<h1>Login</h1>
+<p>More than 100 plus Recipes from around the world</p>
+<form (ngSubmit)="login()" [formGroup]="loginForm" style="width: 400px;" class="shadow border rounded p-5 mt-5">
+<div class="mb-5 text-center">
+<h3><i class="fa-solid fa-graduation-cap"></i>Cookpedia</h3>
+</div>
+<div class="mb-5">
+    <input name="email" formControlName="email"  type="email" placeholder="E Mail" class="form-control">
+    </div>
+    @if(loginForm.get("email")?.errors && loginForm.get("email")?.touched){
+        <div class="mb-3 text-danger">*Invalid email</div>
+    }
+<div class="mb-5">
+    <input name="password" formControlName="password"  type="password" placeholder="Password" class="form-control">
+</div>
+@if(loginForm.get("password")?.errors && loginForm.get("password")?.touched){
+    <div class="mb-3 text-danger">*Invalid Password</div>
+}
+<div class="d-grid">
+<button type="submit" class=" btn btn-success">Login</button>
+</div>
+</form>
+
+
+
+</div>
+<!-- footer component -->
+<app-footer></app-footer>

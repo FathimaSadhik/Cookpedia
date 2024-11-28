@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="row">
+        <div style="min-height: 100vh;width: fit-content;"
+            class="col-lg-2 bg-success text-light d-flex flex-column p-3 shadow">
+            <!-- sidebaar -->
+            <h5 class="mb-5 text-warning border rounded p-4">
+                <i class="fa-solid fa-graduation-cap"></i> CookPedia Admin
+            </h5>
+            <a routerLink="/admin" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-chart-simple"></i> DashBoard</a>
+            <a routerLink="/admin/all-recipe" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-bowl-food"></i> Recipes</a>
+            <a routerLink="/admin/all-users" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-users"></i> Users</a>
+            <a routerLink="/admin/all-download" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-download"></i> Downloads</a>
+            <a routerLink="/admin/all-request" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-message"></i> Requests</a>
+
+        </div>
+        <div class="col">
+            <h1>All User Testimony Requests</h1>
+            <table class="table my-5 shadow">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>User Name</th>
+                        <th>User Email</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of allTestimony; track $index;let i=$index;) {
+                    <tr>
+                        <td>{{i+1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.message}}</td>
+                        <td>
+                            @if(item.status=='Pending'){
+                            <div class="d-flex">
+                                <button (click)="updateTestimonyStatus(item._id,'Approved')" class="btn btn-success"><i class="fa-solid fa-check"></i></button>
+                                <button (click)="updateTestimonyStatus(item._id,'Rejected')" class="btn btn-danger ms-2"><i class="fa-solid fa-x"></i></button>
+
+                            </div>
+                            }@else if (item.status=='Approved') {
+                            <button class="btn btn-success">Approved</button>
+
+                            }@else {
+                            <button class="btn btn-danger">Rejected</button>
+                            }
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

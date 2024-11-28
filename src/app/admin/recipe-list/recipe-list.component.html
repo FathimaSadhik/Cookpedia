@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="row">
+        <div style="min-height: 100vh;width: fit-content;"
+            class="col-lg-2 bg-success text-light d-flex flex-column p-3 shadow">
+            <!-- sidebaar -->
+            <h5 class="mb-5 text-warning border rounded p-4">
+                <i class="fa-solid fa-graduation-cap"></i> CookPedia Admin
+            </h5>
+            <a routerLink="/admin" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-chart-simple"></i> DashBoard</a>
+            <a routerLink="/admin/all-recipe" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-bowl-food"></i> Recipes</a>
+            <a routerLink="/admin/all-users" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-users"></i> Users</a>
+            <a routerLink="/admin/all-download" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-download"></i> Downloads</a>
+            <a routerLink="/admin/all-request" class="text-decoration-none text-light fw-bolder ms-5 mb-4">
+                <i class="fa-solid fa-message"></i> Requests</a>
+           
+        </div>
+        <div class="col">
+            <h1 class="text-center">All Recipe List</h1>
+            <div class="d-flex justify-content-between my-3">
+                <a routerLink="/admin/recipes/add" class="btn btn-primary">+ Add New Recipe</a>
+                <input [(ngModel)]="searchKey" type="text" placeholder="Search Search by its name!!" class="form-control w-25">
+            </div>
+            <table class="table my-5 shadow">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Cuisine</th>
+                        <th>....</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (recipe of allRecipes | search: searchKey; track $index;let i=$index;) {
+                        <tr>
+                            <td>{{i+1}}</td>
+                            <td>{{recipe.name}}</td>
+                            <td><img width="60px" height="60px" [src]="recipe.image" alt=""></td>
+                            <td>{{recipe.cuisine}}</td>
+                            <td>
+                                <div>
+                                    <a routerLink="/admin/recipes/{{recipe._id}}/edit" class="btn"><i class="fa-solid fa-edit text-primary"></i></a>
+                                <button (click)="removeRecipe(recipe._id)"  class="btn"><i class="fa-solid fa-trash text-danger"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    @if( (allRecipes | search :searchKey).length==0){
+                        <div class="fw-bolder text-danger fs-3">Recipe not Found!!!!</div>
+                    }
+               
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
